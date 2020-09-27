@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         release {
-            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000\"")
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000/\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -28,7 +28,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "debug"
-            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000\"")
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000/\"")
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -63,7 +63,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:${hilt_version}"
 
     // retrofit and OkHttp
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
