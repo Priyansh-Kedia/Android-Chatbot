@@ -20,7 +20,6 @@ class MainRecyclerViewAdapter(private val list: MutableList<Message>): BaseRecyc
     }
 
     override fun getItemViewType(position: Int): Int {
-        log(position.toString())
         return if (position % 2 == 0)
             MESSAGE.SENDER.type
         else

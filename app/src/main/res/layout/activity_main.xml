@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ECEEF3"
     tools:context=".main.MainActivity">
 
     <EditText
@@ -29,13 +30,13 @@
         android:id="@+id/chatRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_chat_sender"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/sendMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_chat_sender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

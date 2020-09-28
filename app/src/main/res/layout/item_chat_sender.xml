@@ -10,9 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="end"
+        android:alpha="0.7"
+        android:background="@drawable/sender_background"
         android:layout_marginEnd="10dp"
         android:text="Some sample text"
-        android:textColor="@color/colorPrimaryDark"
+        android:paddingHorizontal="20dp"
+        android:textColor="#0A05FF"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
