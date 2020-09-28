@@ -5,7 +5,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kedia.chatbot_app.R
+import com.kedia.chatbot_app.api.Message
 import com.kedia.chatbot_app.base.BaseActivity
 import com.kedia.chatbot_app.utils.log
 import com.kedia.chatbot_app.utils.trimString
@@ -15,6 +17,8 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity() {
 
     private val mainViewModel by viewModels<MainViewModel> { viewModelFactory }
+    private val linearLayoutManager by lazy { LinearLayoutManager(this) }
+    private val mainRecyclerViewAdapter by lazy { MainRecyclerViewAdapter(mutableListOf()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +27,24 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
-        button.setOnClickListener {
+        sendMessage.setOnClickListener {
             makeApiCalls()
         }
         setupObservers()
+        setupRecycler()
+    }
+
+    private fun setupRecycler() {
+        chatRecyclerView.apply {
+            adapter = mainRecyclerViewAdapter
+            layoutManager = linearLayoutManager
+        }
     }
 
     private fun setupObservers() {
        mainViewModel.responseMessage.observe(this) {
            log(message = it.response)
+           mainRecyclerViewAdapter.addData(Message(it.response))
        }
 
         mainViewModel.errorLiveData.observe(this) {
@@ -42,7 +55,8 @@ class MainActivity : BaseActivity() {
 
     private fun makeApiCalls() {
         lifecycleScope.launch {
-            mainViewModel.sendMessage(messageText.trimString())
+            mainRecyclerViewAdapter.addData(Message(messageEditText.trimString()))
+            mainViewModel.sendMessage(messageEditText.trimString())
         }
     }
 }
