@@ -56,6 +56,7 @@ class MainActivity : BaseActivity() {
     private fun makeApiCalls() {
         lifecycleScope.launch {
             mainRecyclerViewAdapter.addData(Message(messageEditText.trimString()))
+            messageEditText.text.clear()
             mainViewModel.sendMessage(messageEditText.trimString())
         }
     }
