@@ -35,6 +35,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setupRecycler() {
+        linearLayoutManager.stackFromEnd = true
         chatRecyclerView.apply {
             adapter = mainRecyclerViewAdapter
             layoutManager = linearLayoutManager
@@ -45,6 +46,7 @@ class MainActivity : BaseActivity() {
        mainViewModel.responseMessage.observe(this) {
            log(message = it.response)
            mainRecyclerViewAdapter.addData(Message(it.response))
+           chatRecyclerView.smoothScrollToPosition(mainRecyclerViewAdapter.itemCount - 1)
        }
 
         mainViewModel.errorLiveData.observe(this) {
